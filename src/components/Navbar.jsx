@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowUpRight, Sun, Moon } from 'lucide-react';
-import GithubIcon from './GithubIcon';
+import React, { useState, useEffect } from "react";
+import { Menu, X, ArrowUpRight, Sun, Moon } from "lucide-react";
+import GithubIcon from "./GithubIcon";
 
 export default function Navbar({ activeSection, darkMode, toggleDarkMode }) {
   const [scrolled, setScrolled] = useState(false);
@@ -10,16 +10,16 @@ export default function Navbar({ activeSection, darkMode, toggleDarkMode }) {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact", href: "#contact" },
   ];
 
   const handleNavClick = (e, href) => {
@@ -27,23 +27,23 @@ export default function Navbar({ activeSection, darkMode, toggleDarkMode }) {
     setMobileMenuOpen(false);
     const target = document.querySelector(href);
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      target.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? 'bg-[#FBF9F5]/90 dark:bg-[#0F0E0D]/90 backdrop-blur-md border-b border-[#E8E3DA] dark:border-[#2E2A27] py-3.5 shadow-xs'
-          : 'bg-transparent py-5'
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#FBF9F5]/90 dark:bg-[#0F0E0D]/90 backdrop-blur-md border-b border-[#E8E3DA] dark:border-[#2E2A27] py-3.5 shadow-xs"
+          : "bg-transparent py-5"
+      }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-
         {/* Logo / Brand Name */}
         <a
           href="#home"
-          onClick={(e) => handleNavClick(e, '#home')}
+          onClick={(e) => handleNavClick(e, "#home")}
           className="group flex items-center gap-3 font-bold text-lg text-[#1C1917] dark:text-[#FBF9F5] tracking-tight hover:opacity-90 transition-opacity"
         >
           <div className="relative w-14 h-14 sm:w-16 sm:h-16">
@@ -55,7 +55,7 @@ export default function Navbar({ activeSection, darkMode, toggleDarkMode }) {
             <span className="absolute bottom-0 right-0 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-[#FBF9F5] dark:border-[#0F0E0D]" />
           </div>
           <span className="font-semibold text-base sm:text-lg">
-            Aldwin F. De Castro
+            Aldwin F. De Castro Jr.
           </span>
           <span className="hidden sm:inline-block text-xs font-mono px-2 py-0.5 rounded bg-[#F5F2EB] dark:bg-[#262320] text-[#78716C] dark:text-[#A8A29E] border border-[#E8E3DA] dark:border-[#383330]">
             BSIT
@@ -65,17 +65,18 @@ export default function Navbar({ activeSection, darkMode, toggleDarkMode }) {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-1 bg-[#F5F2EB]/80 dark:bg-[#1C1A18]/80 p-1.5 rounded-full border border-[#E8E3DA]/80 dark:border-[#383330]/80 shadow-2xs">
           {navLinks.map((link) => {
-            const sectionId = link.href.replace('#', '');
+            const sectionId = link.href.replace("#", "");
             const isActive = activeSection === sectionId;
             return (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${isActive
-                    ? 'text-[#1C1917] dark:text-white font-semibold bg-white dark:bg-[#262320] shadow-xs'
-                    : 'text-[#57534E] dark:text-[#A8A29E] hover:text-[#1C1917] dark:hover:text-white hover:bg-white/50 dark:hover:bg-[#262320]/50'
-                  }`}
+                className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                  isActive
+                    ? "text-[#1C1917] dark:text-white font-semibold bg-white dark:bg-[#262320] shadow-xs"
+                    : "text-[#57534E] dark:text-[#A8A29E] hover:text-[#1C1917] dark:hover:text-white hover:bg-white/50 dark:hover:bg-[#262320]/50"
+                }`}
               >
                 {link.name}
                 {isActive && (
@@ -93,9 +94,13 @@ export default function Navbar({ activeSection, darkMode, toggleDarkMode }) {
             onClick={toggleDarkMode}
             className="p-2 rounded-full bg-[#F5F2EB] dark:bg-[#262320] text-[#1C1917] dark:text-[#FBF9F5] border border-[#E8E3DA] dark:border-[#383330] hover:bg-[#E8E3DA] dark:hover:bg-[#383330] transition-colors focus:outline-none"
             aria-label="Toggle dark mode"
-            title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
           >
-            {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-[#1C1917]" />}
+            {darkMode ? (
+              <Sun className="w-4 h-4 text-amber-400" />
+            ) : (
+              <Moon className="w-4 h-4 text-[#1C1917]" />
+            )}
           </button>
 
           <a
@@ -117,7 +122,11 @@ export default function Navbar({ activeSection, darkMode, toggleDarkMode }) {
             className="p-2 rounded-lg bg-[#F5F2EB] dark:bg-[#262320] text-[#1C1917] dark:text-[#FBF9F5] border border-[#E8E3DA] dark:border-[#383330]"
             aria-label="Toggle dark mode"
           >
-            {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-[#1C1917]" />}
+            {darkMode ? (
+              <Sun className="w-4 h-4 text-amber-400" />
+            ) : (
+              <Moon className="w-4 h-4 text-[#1C1917]" />
+            )}
           </button>
 
           <button
@@ -125,7 +134,11 @@ export default function Navbar({ activeSection, darkMode, toggleDarkMode }) {
             className="p-2 rounded-lg text-[#1C1917] dark:text-[#FBF9F5] bg-[#F5F2EB] dark:bg-[#262320] border border-[#E8E3DA] dark:border-[#383330] hover:bg-[#E8E3DA] dark:hover:bg-[#383330] transition-colors focus:outline-none"
             aria-label="Toggle Navigation Menu"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
           </button>
         </div>
       </div>
@@ -135,17 +148,18 @@ export default function Navbar({ activeSection, darkMode, toggleDarkMode }) {
         <div className="md:hidden bg-[#FBF9F5] dark:bg-[#181614] border-b border-[#E8E3DA] dark:border-[#2E2A27] px-4 pt-3 pb-6 space-y-2 shadow-lg animate-in slide-in-from-top-2">
           <div className="space-y-1 pt-1">
             {navLinks.map((link) => {
-              const sectionId = link.href.replace('#', '');
+              const sectionId = link.href.replace("#", "");
               const isActive = activeSection === sectionId;
               return (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isActive
-                      ? 'bg-[#E05326]/10 text-[#E05326] font-semibold border border-[#E05326]/20'
-                      : 'text-[#1C1917] dark:text-[#FBF9F5] hover:bg-[#F5F2EB] dark:hover:bg-[#262320]'
-                    }`}
+                  className={`flex items-center justify-between px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
+                    isActive
+                      ? "bg-[#E05326]/10 text-[#E05326] font-semibold border border-[#E05326]/20"
+                      : "text-[#1C1917] dark:text-[#FBF9F5] hover:bg-[#F5F2EB] dark:hover:bg-[#262320]"
+                  }`}
                 >
                   <span>{link.name}</span>
                   {isActive && (
@@ -157,7 +171,9 @@ export default function Navbar({ activeSection, darkMode, toggleDarkMode }) {
           </div>
 
           <div className="pt-4 border-t border-[#E8E3DA] dark:border-[#2E2A27] flex items-center justify-between px-2">
-            <span className="text-xs text-[#78716C] dark:text-[#A8A29E] font-mono">Sorsogon, PH</span>
+            <span className="text-xs text-[#78716C] dark:text-[#A8A29E] font-mono">
+              Sorsogon, PH
+            </span>
             <a
               href="https://github.com/decastroaldwin0"
               target="_blank"
