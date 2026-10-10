@@ -106,7 +106,7 @@ export default function SkillsSection() {
                   </div>
 
                   <div className="flex flex-wrap gap-2.5">
-                    {cat.skills.map((skill) => {
+                    {cat.skills.map((skill, index) => {
                       const isHovered = hoveredSkill?.name === skill.name;
                       return (
                         <div
@@ -114,13 +114,26 @@ export default function SkillsSection() {
                           onMouseEnter={() => setHoveredSkill(skill)}
                           onMouseLeave={() => setHoveredSkill(null)}
                           onClick={() => setHoveredSkill(skill)}
-                          className={`cursor-pointer group relative px-4 py-2.5 rounded-xl border text-xs font-mono font-semibold transition-all duration-200 flex items-center gap-2 select-none ${
+                          style={{ animationDelay: `${index * 55}ms` }}
+                          className={`skill-badge cursor-pointer group relative px-3 py-2.5 rounded-xl border text-xs font-mono font-semibold transition-all duration-300 flex items-center gap-2 select-none ${
                             isHovered
-                              ? 'bg-[#E05326] text-white border-[#E05326] shadow-md -translate-y-0.5'
-                              : 'bg-white dark:bg-[#1C1A18] text-[#1C1917] dark:text-[#FBF9F5] border-[#E8E3DA] dark:border-[#2E2A27] hover:border-[#E05326] hover:bg-[#FDF3F0] dark:hover:bg-[#E05326]/10'
+                              ? 'bg-[#E05326] text-white border-[#E05326] shadow-[0_8px_24px_rgba(224,83,38,0.25)] -translate-y-1 scale-[1.03]'
+                              : 'bg-white dark:bg-[#1C1A18] text-[#1C1917] dark:text-[#FBF9F5] border-[#E8E3DA] dark:border-[#2E2A27] hover:border-[#E05326] hover:bg-[#FDF3F0] dark:hover:bg-[#E05326]/10 hover:-translate-y-0.5 hover:shadow-md'
                           }`}
                         >
-                          <span className={`w-1.5 h-1.5 rounded-full ${isHovered ? 'bg-white' : 'bg-[#E05326]'}`} />
+                          {skill.logo ? (
+                            <img
+                              src={skill.logo}
+                              alt={`${skill.name} logo`}
+                              style={{ animationDelay: `${index * -0.18}s` }}
+                              className="skill-logo w-4 h-4 object-contain rounded-sm"
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                              }}
+                            />
+                          ) : (
+                            <span className={`w-1.5 h-1.5 rounded-full ${isHovered ? 'bg-white' : 'bg-[#E05326]'}`} />
+                          )}
                           <span>{skill.name}</span>
                         </div>
                       );
